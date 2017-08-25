@@ -1,5 +1,8 @@
 import tensorflow as tf
 
+def leaky_relu(x, alpha=0.2):
+    return tf.maximum(tf.minimum(0.0, alpha * x), x)
+
 def dense_layer(x,num_nodes,activation='relu',name_suffix='',bias_init_val=1,is_plain=False,n_prev=500.):
     """
     Dense fully connected layer
@@ -36,6 +39,8 @@ def dense_layer(x,num_nodes,activation='relu',name_suffix='',bias_init_val=1,is_
     
     if activation == None:
         y = logits
+    elif activation == 'lrelu':
+        y = lrelu(logits)
     elif activation == 'relu':
         y = tf.nn.relu(logits)
     elif activation == 'sigmoid':
