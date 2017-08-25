@@ -27,6 +27,10 @@ def create_datasets():
 	# y_val=(np.arange(num_classes) == y_val[:,]).astype(np.float32)
 	y_test=(np.arange(num_classes) == y_test[:,]).astype(np.float32)
 
+	# Scale [0-1]
+	x_train = x_train/255.0
+	x_test = x_test/255.0
+
 	return [(x_train,y_train),(x_test,y_test)]
 
 datasets = create_datasets()
